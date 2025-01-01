@@ -1,0 +1,2 @@
+console.log("Part 1:", (await Deno.readTextFile("input.txt")).matchAll(/mul\((\d+),(\d+)\)/g).reduce((s, c) => s + c[1] * c[2], 0));
+console.log("Part 2:", (await Deno.readTextFile("input.txt")).matchAll(/do\(\)|don\'t\(\)|mul\((\d+),(\d+)\)/g).reduce((acc, curr) => [acc[0] + (acc[1] === "do()" && curr[1] ? curr[1] * curr[2] : 0), ["do()", "don't()"].includes(curr[0]) ? curr[0] : acc[1]], [0, "do()"])[0]);
